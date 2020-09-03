@@ -1,4 +1,5 @@
 const form = document.getElementById("form");
+const info = document.getElementById("info");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -11,7 +12,13 @@ form.addEventListener("submit", (e) => {
       },
       body: JSON.stringify({ email }),
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then(() => {
+        info.innerHTML = "wysłano";
+        email.value = "";
+      })
+      .catch(() => {
+        info.innerHTML = "wystąpił błąd";
+        email.value = "";
+      });
   }
 });
